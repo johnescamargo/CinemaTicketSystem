@@ -6,6 +6,7 @@
 package cinematicketsystem;
 
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 /**
@@ -14,17 +15,19 @@ import java.util.Scanner;
  */
 public class Menu {
 
+    Scanner scan = new Scanner(System.in);
+
     /**
-     *
      *
      * @param movies
      * @param orders
+     * @throws java.lang.Exception
      */
-    public void mainMenu(ArrayList<Movie> movies, ArrayList<Order> orders) {
+    public void mainMenu(ArrayList<Movie> movies, ArrayList<Order> orders) throws Exception {
         String choice = "w";
-        Scanner scan = new Scanner(System.in);
 
         do {
+            System.out.println("");
             System.out.println("Welcome to the Cinema" + "\n");
             System.out.println("Option 1: Create a new Order");
             System.out.println("Option 2: List of Films");
@@ -90,12 +93,15 @@ public class Menu {
      *
      *
      * @param movies
-     * @param orders 
+     * @param orders
+     * @throws java.lang.Exception
      */
-    public void createOrder(ArrayList<Movie> movies, ArrayList<Order> orders) {
+    public void createOrder(ArrayList<Movie> movies, ArrayList<Order> orders) throws Exception {
         int choice = 0;
         String spare = "w";
-        Scanner scan = new Scanner(System.in);
+        String spare1 = "w";
+        int numOfTickets = 0;
+        Movie movie = new Movie();
 
         do {
             for (int i = 0; i < movies.size(); i++) {
@@ -103,54 +109,102 @@ public class Menu {
             }
 
             System.out.println("Choose a film. Type in its ID");
-            spare = scan.nextLine();
-
+            spare = scan.next();
+            spare1 = "q";
             for (int i = 0; i < movies.size(); i++) {
-                String a = Integer.toString(movies.get(i).getId());
-                if (a.equals(spare)) {
-                    spare = "o";
+                String movieId = Integer.toString(movies.get(i).getId());
+                if (movieId.equals(spare)) {
+                    movie = movies.get(i);//save an instance of Movie
+                    spare1 = "o";
                     break;
-                } else {
-                    // System.out.println("Invalid Number. Try again");
                 }
             }
 
-        } while (!spare.equals("o"));
+        } while (!spare1.equals("o"));
 
         do {
-            try {
-                System.out.println("Number of Tickets: ");
-                choice = scan.nextInt();
-                if (choice < 5) {
-                    spare = "o";
+            spare1 = "w";
+            System.out.println("Type in the number of tickets you need");
+            spare = scan.next();
+
+            if ("1".equals(spare)) {
+                numOfTickets = Integer.parseInt(spare);
+                break;
+            } else if ("2".equals(spare)) {
+                numOfTickets = Integer.parseInt(spare);
+                break;
+            } else if ("3".equals(spare)) {
+                numOfTickets = Integer.parseInt(spare);
+                break;
+            } else if ("4".equals(spare)) {
+                numOfTickets = Integer.parseInt(spare);
+                break;
+            } else if ("5".equals(spare)) {
+                numOfTickets = Integer.parseInt(spare);
+                break;
+            } else if ("6".equals(spare)) {
+                numOfTickets = Integer.parseInt(spare);
+                break;
+            } else {
+                System.out.println("Wrong Input");
+                System.out.println("6 is the max number of Tickets that is allowed per person ");
+            }
+
+        } while (!spare1.equals("o"));
+
+        
+
+        do {
+            int[] ageCustomers = new int[numOfTickets];
+            int var = -0;
+
+            spare1 = "o";
+            for (int i = 0; i < ageCustomers.length; i++) {
+
+                int personNum = i + 1;
+                System.out.println("What is the age of person number " + personNum + "?");
+                var = tryCatchNumber();
+                if (var > 0) {
+                    ageCustomers[i] = var;
                 } else {
-                    System.out.println("Number of Tickets allowed per person ");
+                    i--;
+                }
+                
+                if (i == numOfTickets) {
+                    spare1 = "o";
+                    break;
                 }
 
-            } catch (Exception e) {
-                System.out.println(e);
             }
 
-        } while (!spare.equals("o"));
-
-        int[] ageCustomers = new int[choice - 1];
-
-        for (int i = 0; i < ageCustomers.length; i++) {
-
-            try {
-
-                System.out.println("What is the age of person number: " + (ageCustomers[i] + 1));
-                ageCustomers[i] = scan.nextInt();
-            } catch (Exception a) {
-                System.out.println("Wrong input, try again");
-                i--;
-            }
-
-        }
+        } while (!spare1.equals("o"));
 
         System.out.println("Yeahh");
-       // Calculate the total price, save movie and Id
-       // orders.add(new Order( id,  movie, price));
+        // calculate discount
+        // 0 - 12 40%
+        // 13 - 64 normal price
+        // > 65 - 20%
         
+        //Display total price transaction
+        // register details of the payment in a text file
     }
+
+    public int tryCatchNumber() throws Exception {
+
+        Scanner scan1 = new Scanner(System.in);
+        try {
+
+            int var = 0;
+
+            var = scan1.nextInt();
+
+            return var;
+
+        } catch (Exception a) {
+            System.out.println(a);
+        }
+        return 0;
+
+    }
+
 }

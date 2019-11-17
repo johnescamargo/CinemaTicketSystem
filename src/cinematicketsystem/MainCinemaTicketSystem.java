@@ -13,8 +13,9 @@ public class MainCinemaTicketSystem {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.Exception
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Order order = new Order();
         SetUp setup = new SetUp();
         Menu menu = new Menu();
