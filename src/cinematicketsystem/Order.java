@@ -5,8 +5,6 @@
  */
 package cinematicketsystem;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Johnes
@@ -16,20 +14,27 @@ public class Order {
     private int id;
     private Movie movie;
     private double price;
-    ArrayList<Integer> numOfTickets = new ArrayList<>();
+    private int numOfTickets;
 
     //Constructor
     public Order() {
     }
 
-    public Order(int id, Movie movie, double price) {
+    /**
+     *
+     * @author Johnes
+     * @param id
+     * @param movie
+     * @param price
+     * @param numOfTickets
+     */
+    public Order(int id, Movie movie, double price, int numOfTickets) {
         this.id = id;
         this.movie = movie;
         this.price = price;
+        this.numOfTickets = numOfTickets;
     }
 
-    
-    
     //Setters
     public void setId(int id) {
         this.id = id;
@@ -43,7 +48,7 @@ public class Order {
         this.price = price;
     }
 
-    public void setNumOfTickets(ArrayList<Integer> numOfTickets) {
+    public void setNumOfTickets(int numOfTickets) {
         this.numOfTickets = numOfTickets;
     }
 
@@ -60,13 +65,34 @@ public class Order {
         return price;
     }
 
-    public ArrayList<Integer> getNumOfTickets() {
+    /**
+     *
+     * 
+     * @param price1
+     * @return 
+     */
+    public String getPriceString(double price1) {
+        String price2 = Double.toString(price1);
+
+        if (price2.length() > 4) {
+            price2 = price2.substring(0, 4);
+            return price2;
+        }
+        return price2;
+
+    }
+
+    public int getNumOfTickets() {
         return numOfTickets;
     }
 
     @Override
     public String toString() {
-        return "Order{" + "id=" + id + ", movie=" + movie + ", price=" + price + ", numOfTickets=" + numOfTickets + '}';
+        return "Order Id: " + id + "\n"
+                + "Movie: " + movie.getTitle() + "\n"
+                + "Number of Tickets: " + numOfTickets + "\n"
+                + "Total Price: €" + getPriceString(price) + "\n"
+                + "____________________________________________" + "\n";
     }
 
 }

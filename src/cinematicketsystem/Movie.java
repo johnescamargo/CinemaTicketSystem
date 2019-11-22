@@ -15,18 +15,29 @@ public class Movie {
     private String title;
     private String genre;
     private double price;
+    private int ageRating;
 
-    //Constructor
-    public Movie(String title, String genre, double price, int id) {
+    /**
+     * Constructor
+     *
+     * @param title
+     * @param genre
+     * @param price
+     * @param id
+     * @param ageRating
+     */
+    public Movie(String title, String genre, double price, int id, int ageRating) {
         this.id = id;
         this.title = title;
         this.genre = genre;
         this.price = price;
+        this.ageRating = ageRating;
     }
 
+    //Constructor
     public Movie() {
-    }  
-    
+    }
+
     //Setters
     public void setId(int id) {
         this.id = id;
@@ -42,6 +53,10 @@ public class Movie {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public void setAgeRating(int ageRating) {
+        this.ageRating = ageRating;
     }
 
     //Getters
@@ -61,9 +76,19 @@ public class Movie {
         return price;
     }
 
+    public int getAgeRating() {
+        return ageRating;
+    }
+
     @Override
     public String toString() {
-        return "Movie{" + "id=" + id + ", title=" + title + ", genre=" + genre + ", price=" + price + '}';
+        return "Movie:" + "\n"
+                + "Id: " + id + "\n"
+                + "Title: " + title + "\n"
+                + "Genre: " + genre + "\n"
+                + "Age Rating: " + ageRating + "\n"
+                + "Price: €" + price + "\n"
+                + "_______________________________________________________";
     }
 
 }

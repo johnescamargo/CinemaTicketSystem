@@ -16,10 +16,15 @@ import java.util.Scanner;
  */
 public class SetUp {
 
+    //Global variables
     ArrayList<Movie> movies = new ArrayList<>();
     ArrayList<Order> orders = new ArrayList<>();
     Scanner scan = new Scanner(System.in);
 
+    /**
+     * Method that saves films from a text file into ArrayList movies
+     * 
+     */
     public void setMovies() {
         try {
 
@@ -36,10 +41,11 @@ public class SetUp {
                 String[] parts = line.split(";");
                 String title = parts[0];
                 String genre = parts[1];
-                double price = Double.parseDouble(parts[2]);
+                double price = Double.parseDouble(parts[2].trim());
+                int ageRating = Integer.parseInt(parts[3].trim());
 
-                movies.add(new Movie(title, genre, price, (i + 11)));
-               // System.out.println(movies.get(i));
+                movies.add(new Movie(title, genre, price, (i + 11), ageRating));
+                // System.out.println(movies.get(i));
 
                 i++;
 
@@ -47,11 +53,9 @@ public class SetUp {
 
         } catch (FileNotFoundException | NumberFormatException e) {
             System.out.println(e);
-            System.exit(1);
+            System.exit(1);//Close aplication in case of error
         }
 
     }
-
-    
 
 }

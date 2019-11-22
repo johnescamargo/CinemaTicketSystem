@@ -7,7 +7,7 @@ package cinematicketsystem;
 
 /**
  *
- * @author Johnes
+ * @author Johnes 2019105
  */
 public class MainCinemaTicketSystem {
 
@@ -16,12 +16,12 @@ public class MainCinemaTicketSystem {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        Order order = new Order();
+        // Create instances of the objects
         SetUp setup = new SetUp();
         Menu menu = new Menu();
 
-        setup.setMovies();
-        menu.mainMenu(setup.movies, setup.orders);
+        setup.setMovies();//Call method to Set up films 
+        menu.mainMenu(setup.movies, setup.orders);//Call main menu
     }
 
 }
