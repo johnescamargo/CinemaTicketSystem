@@ -21,7 +21,7 @@ public class Order {
     }
 
     /**
-     *
+     * Constructor
      * @author Johnes
      * @param id
      * @param movie

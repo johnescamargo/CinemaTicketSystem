@@ -37,6 +37,7 @@ public class SetUp {
             // in the file.
             while (myScanner.hasNext()) {
 
+                //Get the piece of text and separate them after the character semicolon
                 String line = myScanner.nextLine();
                 String[] parts = line.split(";");
                 String title = parts[0];
@@ -44,6 +45,7 @@ public class SetUp {
                 double price = Double.parseDouble(parts[2].trim());
                 int ageRating = Integer.parseInt(parts[3].trim());
 
+                //Save into ArrayList of movies
                 movies.add(new Movie(title, genre, price, (i + 11), ageRating));
                 // System.out.println(movies.get(i));
 
